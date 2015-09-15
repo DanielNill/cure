@@ -40,7 +40,7 @@ my_malloc_init(VALUE self, VALUE size) {
 
   if (NULL == ptr->ptr)
     rb_raise(rb_eNoMemError, "unable to allocate %ld bytes", requested);
-
+  
   ptr->size = requested;
 
   return self;
@@ -65,8 +65,8 @@ void
 Init_my_malloc(void) {
   VALUE cMyMalloc;
 
-  cMyMalloc = rb_const_get(rb_cObject, rb_intern("MyMalloc"));
-
+  cMyMalloc = rb_define_class("MyMalloc", rb_cObject);
+  
   rb_define_alloc_func(cMyMalloc, my_malloc_alloc);
   rb_define_method(cMyMalloc, "initialize", my_malloc_init, 1);
   rb_define_method(cMyMalloc, "free", my_malloc_release, 0);
