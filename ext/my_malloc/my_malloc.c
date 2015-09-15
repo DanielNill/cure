@@ -39,7 +39,7 @@ my_malloc_init(VALUE self, VALUE size) {
   ptr->ptr = malloc(requested);
 
   if (NULL == ptr->ptr)
-    rb_raise(rb_eNoMemError, "unable to allocate %ld bytes", requested);
+    rb_raise(rb_eNoMemError, "unable to allocate %" PRIuSIZE " bytes", requested);
   
   ptr->size = requested;
 
