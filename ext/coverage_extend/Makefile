@@ -81,7 +81,7 @@ CCDLFLAGS = -fno-common
 CFLAGS   = $(CCDLFLAGS)  -O3 -Wno-error=shorten-64-to-32  -pipe $(ARCH_FLAG)
 INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir)
 DEFS     = 
-CPPFLAGS = -DHAVE_MALLOC -DHAVE_FREE -I/Users/Daniel/.rbenv/versions/2.1.6/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT $(DEFS) $(cppflags)
+CPPFLAGS =  -I/Users/Daniel/.rbenv/versions/2.1.6/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -D_DARWIN_UNLIMITED_SELECT -D_REENTRANT $(DEFS) $(cppflags)
 CXXFLAGS = $(CCDLFLAGS) $(cxxflags) $(ARCH_FLAG)
 ldflags  = -L. -L/Users/Daniel/.rbenv/versions/2.1.6/lib  -fstack-protector
 dldflags = -Wl,-undefined,dynamic_lookup -Wl,-multiply_defined,suppress 
@@ -130,15 +130,15 @@ DISTCLEANDIRS =
 
 extout = 
 extout_prefix = 
-target_prefix = /my_malloc
+target_prefix = /coverage_extend
 LOCAL_LIBS = 
 LIBS =   -lpthread -ldl -lobjc 
-ORIG_SRCS = my_malloc.c
+ORIG_SRCS = coverage_extend.c
 SRCS = $(ORIG_SRCS) 
-OBJS = my_malloc.o
+OBJS = coverage_extend.o
 HDRS = 
-TARGET = my_malloc
-TARGET_NAME = my_malloc
+TARGET = coverage_extend
+TARGET_NAME = coverage_extend
 TARGET_ENTRY = Init_$(TARGET_NAME)
 DLLIB = $(TARGET).bundle
 EXTSTATIC = 
@@ -180,7 +180,7 @@ distclean: clean distclean-so distclean-static distclean-rb-default distclean-rb
 realclean: distclean
 install: install-so install-rb
 
-install-so: $(DLLIB) $(TIMESTAMP_DIR)/.RUBYARCHDIR.-.my_malloc.time
+install-so: $(DLLIB) $(TIMESTAMP_DIR)/.RUBYARCHDIR.-.coverage_extend.time
 	$(INSTALL_PROG) $(DLLIB) $(RUBYARCHDIR)
 clean-static::
 	-$(Q)$(RM) $(STATIC_LIB)
@@ -189,8 +189,8 @@ install-rb-default: pre-install-rb-default
 pre-install-rb: Makefile
 pre-install-rb-default: Makefile
 pre-install-rb-default:
-	$(ECHO) installing default my_malloc libraries
-$(TIMESTAMP_DIR)/.RUBYARCHDIR.-.my_malloc.time:
+	$(ECHO) installing default coverage_extend libraries
+$(TIMESTAMP_DIR)/.RUBYARCHDIR.-.coverage_extend.time:
 	$(Q) $(MAKEDIRS) $(@D) $(RUBYARCHDIR)
 	$(Q) $(TOUCH) $@
 
@@ -229,7 +229,7 @@ site-install-rb: install-rb
 	$(Q) $(CC) $(INCFLAGS) $(CPPFLAGS) $(CFLAGS) $(COUTFLAG)$@ -c $<
 
 $(DLLIB): $(OBJS) Makefile
-	$(ECHO) linking shared-object my_malloc/$(DLLIB)
+	$(ECHO) linking shared-object coverage_extend/$(DLLIB)
 	-$(Q)$(RM) $(@)
 	$(Q) $(LDSHARED) -o $@ $(OBJS) $(LIBPATH) $(DLDFLAGS) $(LOCAL_LIBS) $(LIBS)
 	$(Q) $(POSTLINK)

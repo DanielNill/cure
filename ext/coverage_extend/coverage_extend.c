@@ -62,7 +62,7 @@ my_malloc_release(VALUE self) {
 }
 
 void
-Init_my_malloc(void) {
+Init_coverage_extend(void) {
   VALUE cMyMalloc;
 
   cMyMalloc = rb_define_class("MyMalloc", rb_cObject);
