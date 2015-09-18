@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in cure.gemspec
+gem 'rake-compiler', '~> 0.9.5'
+
 gemspec
